@@ -1,0 +1,23 @@
+{
+  "name": "securemyworldbot",
+  "version": "1.0.0",
+  "description": "Secure my world companion bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/satyapramodh/securemyworldbot.git"
+  },
+  "author": "Pramodh, Deepankit",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/satyapramodh/securemyworldbot/issues"
+  },
+  "homepage": "https://github.com/satyapramodh/securemyworldbot#readme",
+  "dependencies": {
+    "botbuilder": "^3.5.3",
+    "restify": "^4.3.0"
+  }
+}
