@@ -23,14 +23,16 @@ var connector = new builder.ChatConnector({
 var bot = new builder.UniversalBot(connector);
 server.post('/api/messages', connector.listen());
 
-
-var intents = new builder.IntentDialog();
+var model = process.env.modelURL;
+var recognizer = new builder.LuisRecognizer(model);
+var intents = new builder.IntentDialog({ recognizers: [recognizer] });
 bot.dialog('/', intents);
 
 //=========================================================
 // Bots Dialogs
 //=========================================================
 
+// test change name
 intents.matches(/^change name/i, [
     function (session) {
         session.beginDialog('/profile');
@@ -40,19 +42,22 @@ intents.matches(/^change name/i, [
     }
 ]);
 
+
+// defaults
 intents.onDefault([
     function (session, args, next) {
         if (!session.userData.name) {
             session.beginDialog('/profile');
-        } else {
-            next();
         }
     },
     function (session, results) {
-        session.send('Hello %s!', session.userData.name);
+      session.send('Sorry i did not get that!');
     }
 ]);
 
+
+
+// dialogs
 bot.dialog('/profile', [
     function (session) {
         builder.Prompts.text(session, 'Hi! What is your name?');
